@@ -1,4 +1,8 @@
+
+
 // html vars
+
+
 var guessNum = document.getElementById('guess-num')
 var clue = document.getElementById('clue')
 var wordDash = document.getElementById('word-dash')
@@ -192,3 +196,4 @@ wordSubmit.addEventListener('click',function(){
         }
       }
     })
+
