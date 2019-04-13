@@ -1,6 +1,13 @@
 //TODO:BUTTON TO ADD DIFFICULTY LEVEL IN URL
-//medium difficulty= 2
+//alert confirming new game with diff difficulty
+const easyBtn = document.getElementsByClassName('easy-btn')
+const medBtn = document.getElementsByClassName('med-btn')
+const hardBtn = document.getElementsByClassName('hard-btn')
 
+//difficulty levels
+const easy = 1
+const medium = 5
+const hard = 10
 
 function loadGame(difficulty) {
 //prevents CORS error
@@ -25,7 +32,23 @@ fetch(proxyurl + url)
 .catch(error => console.log(error))
 }
 
-loadGame(1)
+//loops in case other difficulty buttons need to be added
+for (let i = 0; i < easyBtn.length; i++) {
+  easyBtn[i].addEventListener('click', function(){
+    loadGame(easy)
+  })
+}
+for (let i = 0; i < medBtn.length; i++) {
+  medBtn[i].addEventListener('click', function(){
+    loadGame(medium)
+  })
+}
+for (let i = 0; i < hardBtn.length; i++) {
+  hardBtn[i].addEventListener('click', function(){
+    loadGame(hard)
+  })
+}
+
 // // html vars
 
 //REPLAVE VAR WITH CONST/LET
