@@ -1,8 +1,12 @@
 //TODO:BUTTON TO ADD DIFFICULTY LEVEL IN URL
+//medium difficulty= 2
+
+
+function loadGame(difficulty) {
 //prevents CORS error
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
 //URL with difficulty,length,and count added
-const url = "http://app.linkedin-reach.io/words?difficulty=2&minLength=3&maxLength=8&count=1000"; 
+const url = `http://app.linkedin-reach.io/words?difficulty=${difficulty}&minLength=3&maxLength=8&count=1000`; 
 //array that holds word list pulled from API
 let wordArray = []
   
@@ -16,10 +20,12 @@ fetch(proxyurl + url)
   wordArray = wordList.slice()
   console.log(wordArray)
 
-  
+
 })
 .catch(error => console.log(error))
-  
+}
+
+loadGame(1)
 // // html vars
 
 //REPLAVE VAR WITH CONST/LET
