@@ -8,6 +8,8 @@ const usedLtrs = document.getElementById('used-ltrs')
 const chancesLeft = document.getElementById('chances-left')
 const prize = document.getElementById('prize')
 const prizeWon = document.getElementById('prize-won')
+const wordInput = document.getElementById('word-input')
+const wordSubmit = document.getElementById('word-submit')
 
 //difficulty levels
 const easy = 1
@@ -194,3 +196,23 @@ for (let i = 0; i < hardBtn.length; i++) {
     }
   })
 }
+//word submit
+wordSubmit.addEventListener('click',function(){
+  if (wordInput.value == word){
+    prizeWon.innerHTML = ((parseInt(prizeWon.innerText)) + (parseInt(prize.innerText)))
+    alert('Good Job! Current Score: '+prizeWon.innerHTML)
+    wordInput.value = ''
+    newGame()
+  } else {
+      chances = (chances-1)
+      chancesLeft.innerHTML = chances
+      alert('Try again!')
+
+      if (chances === 0) {
+          alert('Game Over! Final Score: '+prizeWon.innerHTML+'. Click OK to play again')
+          prizeWon.innerHTML = 0
+          chances = 6
+          newGame()
+      } 
+    }
+  })
