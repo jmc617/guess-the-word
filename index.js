@@ -1,10 +1,22 @@
 //TODO:BUTTON TO ADD DIFFICULTY LEVEL IN URL
+//alert confirming new game with diff difficulty
+const easyBtn = document.getElementsByClassName('easy-btn')
+const medBtn = document.getElementsByClassName('med-btn')
+const hardBtn = document.getElementsByClassName('hard-btn')
+
+//difficulty levels
+const easy = 1
+const medium = 5
+const hard = 10
+
+//array that holds word list pulled from API
+let wordArray = []
+
+function loadGame(difficulty) {
 //prevents CORS error
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
 //URL with difficulty,length,and count added
-const url = "http://app.linkedin-reach.io/words?difficulty=2&minLength=3&maxLength=8&count=1000"; 
-//array that holds word list pulled from API
-let wordArray = []
+const url = `http://app.linkedin-reach.io/words?difficulty=${difficulty}&minLength=3&maxLength=8&count=1000`; 
   
 fetch(proxyurl + url)
 .then(function(response) {
@@ -16,10 +28,47 @@ fetch(proxyurl + url)
   wordArray = wordList.slice()
   console.log(wordArray)
 
-  
+
 })
 .catch(error => console.log(error))
-  
+}
+
+//loops in case other difficulty buttons need to be added (consolidate into one loop when possible)
+for (let i = 0; i < easyBtn.length; i++) {
+  easyBtn[i].addEventListener('click', function(){
+    //if game already in progress confirm before starting new game with new difficulty
+    if ( wordArray ) {
+      if (confirm("Start over with new difficulty?")) {
+        loadGame(easy);
+      }
+    } else {
+      loadGame(easy);
+    }    
+  })
+}
+for (let i = 0; i < medBtn.length; i++) {
+  medBtn[i].addEventListener('click', function(){
+    if ( wordArray ) {
+      if (confirm("Start over with new difficulty?")) {
+        loadGame(medium);
+      }
+    } else {
+      loadGame(medium);
+    }
+  })
+}
+for (let i = 0; i < hardBtn.length; i++) {
+  hardBtn[i].addEventListener('click', function(){
+    if ( wordArray ) {
+      if (confirm("Start over with new difficulty?")) {
+        loadGame(hard);
+      }
+    } else {
+      loadGame(hard);
+    }
+  })
+}
+
 // // html vars
 
 //REPLAVE VAR WITH CONST/LET
