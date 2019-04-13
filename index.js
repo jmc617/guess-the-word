@@ -17,20 +17,31 @@ function randomNumGenerator(){
   return (Math.floor(Math.random()*100));
 }
 const randomNum = randomNumGenerator()
+//word converted to dashes
+let dashedWord = []
+
+function dash(word){
+  const letters = word.split('')
+  console.log(letters)
+  for (let i = 0; i < letters.length; i++) {
+      dashedWord.push("_")
+    }
+  }
 
 function playGame() {
   //player chances
   let chances = 6
   //random word
   const word = wordArray[randomNum] 
+  //display random word as dashes
+  dash(word)
+  
+  const displayWord = dashedWord.join('')
 
   for (let i = 0; i < wordDisplay.length; i++) {
-    console.log(wordArray[0])
-    wordDisplay[i].innerHTML =  word 
+    console.log(displayWord)
+    wordDisplay[i].innerHTML = displayWord 
   }
-
-
-
 }
 
 function loadGame(difficulty) {
