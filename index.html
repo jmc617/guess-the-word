@@ -4,20 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
     <title>guess the word</title>
 </head>
 <body>
+    <h1 id='title'>Guess the Word!</h1>
     <div class='difficulty-wrapper'>
         <button class='easy-btn'>Easy</button>
         <button class='med-btn'>Medium</button>
         <button class='hard-btn' >Hard</button>
     </div>
+    <div id='chancestext'>chances left</div>
     <div id='chances-left'></div>
+    <div id='worth'>this word is worth:</div>
     <div id='prize'></div>
+    <div id='current'>current score</div>
     <div id='prize-won'></div>
+    <div id='currentword'>current word</div>
     <div class='word-display'></div>
+    <div id='used'>letters used</div>
     <div id='used-ltrs'></div>
     <div id='keyboard-wrapper'></div>
+    <input id='word-input'type="text" name="" value="" placeholder="Enter word guess"></input>
+    <button id='word-submit'type="button" name="button">guess word</button>
 
 
     <script type="text/javascript" src="index.js"></script>

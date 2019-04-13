@@ -8,6 +8,8 @@ const usedLtrs = document.getElementById('used-ltrs')
 const chancesLeft = document.getElementById('chances-left')
 const prize = document.getElementById('prize')
 const prizeWon = document.getElementById('prize-won')
+const wordInput = document.getElementById('word-input')
+const wordSubmit = document.getElementById('word-submit')
 
 //difficulty levels
 const easy = 1
@@ -47,7 +49,7 @@ function dash(word){
   const letters = word.split('')
   console.log(letters)
   for (let i = 0; i < letters.length; i++) {
-      dashedWord.push("_")
+      dashedWord.push("-")
     }
   }
 
@@ -107,7 +109,6 @@ function playGame() {
       boxes[i].addEventListener('click', function(event){
         
         const guess = event.target.innerHTML
-        console.log(guess)
         //if guessed letter doesn't match and has not been used before take away a chance and letter to used letters
         if (word.split('').indexOf(guess) < 0 && usedLtrsArray.indexOf(guess) < 0) {
           chances = (chances-1)
@@ -125,7 +126,6 @@ function playGame() {
         for (let i = 0; i <word.split('').length; i++) {
           if (event.target.innerHTML == word.split('')[i]) {
             dashedWord.splice(i,1,event.target.innerHTML);
-            console.log(dashedWord)
             showWord()
             //alert triggers before last letter is replaced
             if (word == displayWord) {
@@ -150,7 +150,6 @@ fetch(proxyurl + url)
   return response.text()
 })
 .then(text => {
-  console.log(text); 
   const wordList = text.split('\n')
   wordArray = wordList.slice()
   console.log(wordArray)
@@ -194,3 +193,23 @@ for (let i = 0; i < hardBtn.length; i++) {
     }
   })
 }
+//word submit
+wordSubmit.addEventListener('click',function(){
+  if (wordInput.value == word){
+    prizeWon.innerHTML = ((parseInt(prizeWon.innerText)) + (parseInt(prize.innerText)))
+    alert('Good Job! Current Score: '+prizeWon.innerHTML)
+    wordInput.value = ''
+    newGame()
+  } else {
+      chances = (chances-1)
+      chancesLeft.innerHTML = chances
+      alert('Try again!')
+
+      if (chances === 0) {
+          alert('Game Over! Final Score: '+prizeWon.innerHTML+'. Click OK to play again')
+          prizeWon.innerHTML = 0
+          chances = 6
+          newGame()
+      } 
+    }
+  })
