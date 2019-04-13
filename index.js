@@ -1,8 +1,8 @@
-//TODO:BUTTON TO ADD DIFFICULTY LEVEL IN URL
-//alert confirming new game with diff difficulty
+//HTML elements
 const easyBtn = document.getElementsByClassName('easy-btn')
 const medBtn = document.getElementsByClassName('med-btn')
 const hardBtn = document.getElementsByClassName('hard-btn')
+const wordDisplay = document.getElementsByClassName('word-display')
 
 //difficulty levels
 const easy = 1
@@ -12,11 +12,32 @@ const hard = 10
 //array that holds word list pulled from API
 let wordArray = []
 
+// random number for choosing words
+function randomNumGenerator(){
+  return (Math.floor(Math.random()*100));
+}
+const randomNum = randomNumGenerator()
+
+function playGame() {
+  //player chances
+  let chances = 6
+  //random word
+  const word = wordArray[randomNum] 
+
+  for (let i = 0; i < wordDisplay.length; i++) {
+    console.log(wordArray[0])
+    wordDisplay[i].innerHTML =  word 
+  }
+
+
+
+}
+
 function loadGame(difficulty) {
 //prevents CORS error
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
 //URL with difficulty,length,and count added
-const url = `http://app.linkedin-reach.io/words?difficulty=${difficulty}&minLength=3&maxLength=8&count=1000`; 
+const url = `http://app.linkedin-reach.io/words?difficulty=${difficulty}&minLength=3&maxLength=8&count=100`; 
   
 fetch(proxyurl + url)
 .then(function(response) {
@@ -27,6 +48,7 @@ fetch(proxyurl + url)
   const wordList = text.split('\n')
   wordArray = wordList.slice()
   console.log(wordArray)
+  playGame()
 
 
 })
@@ -37,8 +59,8 @@ fetch(proxyurl + url)
 for (let i = 0; i < easyBtn.length; i++) {
   easyBtn[i].addEventListener('click', function(){
     //if game already in progress confirm before starting new game with new difficulty
-    if ( wordArray ) {
-      if (confirm("Start over with new difficulty?")) {
+    if ( wordArray.length != 0 ) {
+      if (confirm("Start over with selected difficulty?")) {
         loadGame(easy);
       }
     } else {
@@ -48,8 +70,8 @@ for (let i = 0; i < easyBtn.length; i++) {
 }
 for (let i = 0; i < medBtn.length; i++) {
   medBtn[i].addEventListener('click', function(){
-    if ( wordArray ) {
-      if (confirm("Start over with new difficulty?")) {
+    if ( wordArray.length != 0 ) {
+      if (confirm("Start over with selected difficulty?")) {
         loadGame(medium);
       }
     } else {
@@ -59,8 +81,8 @@ for (let i = 0; i < medBtn.length; i++) {
 }
 for (let i = 0; i < hardBtn.length; i++) {
   hardBtn[i].addEventListener('click', function(){
-    if ( wordArray ) {
-      if (confirm("Start over with new difficulty?")) {
+    if ( wordArray.length != 0 ) {
+      if (confirm("Start over with selected difficulty?")) {
         loadGame(hard);
       }
     } else {
@@ -127,7 +149,7 @@ for (let i = 0; i < hardBtn.length; i++) {
 
 // // random number for choosing word/clues
 // function randomNumGenerator(){
-//   return (Math.floor(Math.random()*100));
+//   return (Math.floor(Math.random()*1000));
 // }
 // const randomNum = randomNumGenerator()
 
