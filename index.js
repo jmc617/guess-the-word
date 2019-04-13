@@ -49,7 +49,7 @@ function dash(word){
   const letters = word.split('')
   console.log(letters)
   for (let i = 0; i < letters.length; i++) {
-      dashedWord.push("_")
+      dashedWord.push("-")
     }
   }
 
@@ -109,7 +109,6 @@ function playGame() {
       boxes[i].addEventListener('click', function(event){
         
         const guess = event.target.innerHTML
-        console.log(guess)
         //if guessed letter doesn't match and has not been used before take away a chance and letter to used letters
         if (word.split('').indexOf(guess) < 0 && usedLtrsArray.indexOf(guess) < 0) {
           chances = (chances-1)
@@ -127,7 +126,6 @@ function playGame() {
         for (let i = 0; i <word.split('').length; i++) {
           if (event.target.innerHTML == word.split('')[i]) {
             dashedWord.splice(i,1,event.target.innerHTML);
-            console.log(dashedWord)
             showWord()
             //alert triggers before last letter is replaced
             if (word == displayWord) {
@@ -152,7 +150,6 @@ fetch(proxyurl + url)
   return response.text()
 })
 .then(text => {
-  console.log(text); 
   const wordList = text.split('\n')
   wordArray = wordList.slice()
   console.log(wordArray)

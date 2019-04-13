@@ -1,0 +1,78 @@
+* {
+    text-align: center;
+    margin: 5px auto;
+    text-transform: uppercase;
+    font-family: "Rubik", sans-serif; 
+}
+#currentword, #worth, #current, #used {
+    margin: 0 auto;
+    align-content: center; 
+}
+#prizewon {
+    padding: 10px;
+    box-shadow: inset 1px 1px 5px 2px rgba(0, 0, 0, 0.27); 
+}
+#used-ltrs {
+    height: 15px; 
+}
+.word-display {
+    font-size: 1.5rem;
+    display: inline-block;
+    min-width: 15%;
+    padding: 10px;
+    box-shadow: inset 1px 1px 5px 2px rgba(0, 0, 0, 0.27);
+    text-align: center;
+}
+#prize, #prize-won, #used-ltrs, #chances-left {
+    display: inline-block;
+    min-width: 15%;
+    padding: 10px;
+    box-shadow: inset 1px 1px 5px 2px rgba(0, 0, 0, 0.27);
+    text-align: center; } 
+.keys {
+    background-color: #04f765;
+    padding: 5px;
+    margin: 2px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-family: inherit;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s; 
+}
+.keys:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6); 
+}
+#word-submit:hover, .easy-btn:hover, .med-btn:hover, .hard-btn:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.6); 
+}
+#word-submit, .easy-btn, .med-btn, .hard-btn{
+    margin: 5px;
+    background-color: #04f765;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-family: inherit; 
+}
+#chances-left {
+    padding: 10px;
+    box-shadow: inset 1px 1px 5px 2px rgba(0, 0, 0, 0.27);
+}
+#prizewon {
+    padding: 10px;
+    box-shadow: inset 1px 1px 5px 2px rgba(0, 0, 0, 0.27); 
+}
+#used-ltrs {
+    padding: 10px;
+    box-shadow: inset 1px 1px 5px 2px rgba(0, 0, 0, 0.27);
+    height: 15px; 
+}
+#prize {
+    padding: 10px;
+    box-shadow: inset 1px 1px 5px 2px rgba(0, 0, 0, 0.27); 
+}
+#word-input {
+    border-radius: 9999em;
+    border-color: #04f765;
+    height: 90%; 
+}
+  
