@@ -9,13 +9,14 @@ const easy = 1
 const medium = 5
 const hard = 10
 
+//array that holds word list pulled from API
+let wordArray = []
+
 function loadGame(difficulty) {
 //prevents CORS error
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
 //URL with difficulty,length,and count added
 const url = `http://app.linkedin-reach.io/words?difficulty=${difficulty}&minLength=3&maxLength=8&count=1000`; 
-//array that holds word list pulled from API
-let wordArray = []
   
 fetch(proxyurl + url)
 .then(function(response) {
@@ -32,20 +33,39 @@ fetch(proxyurl + url)
 .catch(error => console.log(error))
 }
 
-//loops in case other difficulty buttons need to be added
+//loops in case other difficulty buttons need to be added (consolidate into one loop when possible)
 for (let i = 0; i < easyBtn.length; i++) {
   easyBtn[i].addEventListener('click', function(){
-    loadGame(easy)
+    //if game already in progress confirm before starting new game with new difficulty
+    if ( wordArray ) {
+      if (confirm("Start over with new difficulty?")) {
+        loadGame(easy);
+      }
+    } else {
+      loadGame(easy);
+    }    
   })
 }
 for (let i = 0; i < medBtn.length; i++) {
   medBtn[i].addEventListener('click', function(){
-    loadGame(medium)
+    if ( wordArray ) {
+      if (confirm("Start over with new difficulty?")) {
+        loadGame(medium);
+      }
+    } else {
+      loadGame(medium);
+    }
   })
 }
 for (let i = 0; i < hardBtn.length; i++) {
   hardBtn[i].addEventListener('click', function(){
-    loadGame(hard)
+    if ( wordArray ) {
+      if (confirm("Start over with new difficulty?")) {
+        loadGame(hard);
+      }
+    } else {
+      loadGame(hard);
+    }
   })
 }
 
