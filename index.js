@@ -1,20 +1,24 @@
-//HTML elements
-const easyBtn = document.getElementsByClassName('easy-btn')
-const medBtn = document.getElementsByClassName('med-btn')
-const hardBtn = document.getElementsByClassName('hard-btn')
-const wordDisplay = document.getElementsByClassName('word-display')
-const keyboardWrapper = document.getElementById('keyboard-wrapper')
-const usedLtrs = document.getElementById('used-ltrs')
-const chancesLeft = document.getElementById('chances-left')
-const prize = document.getElementById('prize')
-const prizeWon = document.getElementById('prize-won')
-const wordInput = document.getElementById('word-input')
-const wordSubmit = document.getElementById('word-submit')
+const easyBtn = document.querySelectorAll('.easy-btn');
+const medBtn = document.querySelectorAll('.med-btn');
+const hardBtn = document.querySelectorAll('.hard-btn');
+const wordDisplay = document.querySelectorAll('.word-display');
+const keyboardWrapper = document.querySelector('#keyboard-wrapper');
+const usedLtrs = document.querySelector('#used-ltrs');
+const chancesLeft = document.querySelector('#chances-left');
+const prize = document.querySelector('#prize');
+const prizeWon = document.querySelector('#prize-won');
+const wordInput = document.querySelector('#word-input');
+const wordSubmit = document.querySelector('#word-submit');
 
-//difficulty levels
-const easy = 1
-const medium = 5
-const hard = 10
+// //difficulty levels for interview project
+// const easy = 1
+// const medium = 5
+// const hard = 10
+
+//difficulty levels for wordsapi using number of syllables
+const easy = 2
+const medium = 3
+const hard = 4
 
 //array that holds word list pulled from API
 let wordArray = []
@@ -140,12 +144,15 @@ function playGame() {
   }
 
 function loadGame(difficulty) {
-//prevents CORS error
-const proxyurl = "https://cors-anywhere.herokuapp.com/";
+// //prevents CORS error
+// const proxyurl = "https://cors-anywhere.herokuapp.com/";
+// fetch(proxyurl + url)
+
 //URL with difficulty,length,and count added
 const url = `http://app.linkedin-reach.io/words?difficulty=${difficulty}&minLength=3&maxLength=8&count=100`; 
   
-fetch(proxyurl + url)
+
+fetch(url)
 .then(function(response) {
   return response.text()
 })
