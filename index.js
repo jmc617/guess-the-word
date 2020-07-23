@@ -15,10 +15,10 @@ const wordSubmit = document.querySelector('#word-submit');
 // const medium = 5
 // const hard = 10
 
-//difficulty levels for wordsapi using number of syllables
-const easy = 2
-const medium = 3
-const hard = 4
+//difficulty levels for randomwords. Sort words into word list by length?
+const easy = {level: 'easy', numOfLtrs: 4};
+const medium = {level:'medium', numOfLtrs: 6};
+const hard = {level:'hard', numOfLtrs: 8};
 
 //array that holds word list pulled from API
 let wordArray = []
@@ -145,21 +145,30 @@ function playGame() {
 
 function loadGame(difficulty) {
 // //prevents CORS error
-// const proxyurl = "https://cors-anywhere.herokuapp.com/";
+const proxyurl = "https://cors-anywhere.herokuapp.com/";
 // fetch(proxyurl + url)
 
-//URL with difficulty,length,and count added
-const url = `http://app.linkedin-reach.io/words?difficulty=${difficulty}&minLength=3&maxLength=8&count=100`; 
+// //URL with difficulty,length,and count added from original project
+// const url = `http://app.~domain~.io/words?difficulty=${difficulty}&minLength=3&maxLength=8&count=100`; 
+
+//url with word count and swear word filter on
+const url = `https://random-word-api.herokuapp.com/word?number=100`
   
 
-fetch(url)
+fetch(proxyurl + url)
 .then(function(response) {
-  return response.text()
+  return response.json()
 })
 .then(text => {
-  const wordList = text.split('\n')
-  wordArray = wordList.slice()
-  console.log(wordArray)
+  console.log(text);
+  console.log(difficulty);
+  if (condition) {
+    
+  }
+  // const wordList = text.split(',')
+  // console.log(wordList);
+  // wordArray = wordList.slice()
+  // console.log(wordArray)
   playGame()
 })
 .catch(error => console.log(error))
