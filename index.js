@@ -16,10 +16,11 @@ const wordSubmit = document.querySelector('#word-submit');
 // const hard = 10
 
 //difficulty levels for randomwords. Sort words into word list by length?
-const easy = {level: 'easy', numOfLtrs: 4};
-const medium = {level:'medium', numOfLtrs: 6};
-const hard = {level:'hard', numOfLtrs: 8};
+const easy = {level: 'easy', numOfLtrs: 5};
+const medium = {level:'medium', numOfLtrs: 7};
+const hard = {level:'hard', numOfLtrs: 9};
 
+arraySize = 500
 //array that holds word list pulled from API
 let wordArray = []
 //random word
@@ -43,7 +44,7 @@ function randomPrize () {
 
 // random number for choosing words
 function randomNumGenerator(){
-  return (Math.floor(Math.random()*100));
+  return (Math.floor(Math.random()*wordArray.length));
 }
 const randomNum = randomNumGenerator()
 
@@ -67,6 +68,7 @@ function showWord() {
 
 function newGame () {
   word = wordArray[randomNumGenerator()]
+  console.log(word);
   chances = 6
   usedLtrsArray = []
   usedLtrs.innerHTML = ''
@@ -146,25 +148,29 @@ function playGame() {
 function loadGame(difficulty) {
 // //prevents CORS error
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
-// fetch(proxyurl + url)
 
-// //URL with difficulty,length,and count added from original project
-// const url = `http://app.~domain~.io/words?difficulty=${difficulty}&minLength=3&maxLength=8&count=100`; 
-
-//url with word count and swear word filter on
-const url = `https://random-word-api.herokuapp.com/word?number=100`
+//random word list url with word count
+const url = `https://random-word-api.herokuapp.com/word?number=${arraySize}`
   
 
 fetch(proxyurl + url)
 .then(function(response) {
   return response.json()
 })
-.then(text => {
-  console.log(text);
+.then(apiArray => {
+  console.log(apiArray);
   console.log(difficulty);
-  if (condition) {
-    
+  if (difficulty.level === 'hard') {
+    wordArray = apiArray.filter(word => word.length < difficulty.numOfLtrs && word.length >= medium.numOfLtrs );
+    console.log(wordArray);
+  } else if (difficulty.level === 'medium') {
+    wordArray = apiArray.filter(word => word.length < difficulty.numOfLtrs && word.length >= easy.numOfLtrs );
+    console.log(wordArray);
+  } else {
+    wordArray = apiArray.filter(word => word.length <= difficulty.numOfLtrs && word.length >= 1 );
+    console.log(wordArray);
   }
+
   // const wordList = text.split(',')
   // console.log(wordList);
   // wordArray = wordList.slice()
