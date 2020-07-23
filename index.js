@@ -10,28 +10,23 @@ const prizeWon = document.querySelector('#prize-won');
 const wordInput = document.querySelector('#word-input');
 const wordSubmit = document.querySelector('#word-submit');
 
-// //difficulty levels for interview project
-// const easy = 1
-// const medium = 5
-// const hard = 10
-
 //difficulty levels for randomwords. Sort words into word list by length?
 const easy = {level: 'easy', numOfLtrs: 5};
 const medium = {level:'medium', numOfLtrs: 7};
 const hard = {level:'hard', numOfLtrs: 9};
-
+//number of random words to pull from API
 arraySize = 500
 //array that holds word list pulled from API
 let wordArray = []
 //random word
 let word = ''
-//display word
+
 let displayWord = ''
 //word converted to dashes
 let dashedWord = []
 //player chances
 let chances = 6
-//used letters array
+
 let usedLtrsArray = []
 //prize to be earned for current word,earned total,prize array for random selection
 prizeWon.innerHTML = 0
@@ -41,13 +36,11 @@ function randomPrize () {
   const randomPrizeNum = (Math.floor(Math.random()*10));
   prize.innerHTML = prizeArray[randomPrizeNum]
 }
-
 // random number for choosing words
 function randomNumGenerator(){
   return (Math.floor(Math.random()*wordArray.length));
 }
 const randomNum = randomNumGenerator()
-
 
 function dash(word){
   dashedWord = []
@@ -123,7 +116,7 @@ function playGame() {
           usedLtrs.innerHTML += guess
 
           if (chances === 0) {
-            alert('Game Over! Final Score: '+prizeWon.innerHTML+'. Click OK to play again')
+            alert(`Game Over! The word was "${word}". Final Score: ${prizeWon.innerHTML}. Click OK to play again`)
             prizeWon.innerHTML = 0
             newGame()
             }
@@ -136,7 +129,7 @@ function playGame() {
             //alert triggers before last letter is replaced
             if (word == displayWord) {
               prizeWon.innerHTML = ((parseInt(prizeWon.innerText)) + (parseInt(prize.innerText)))
-              alert('Good Job! Current Score: '+prizeWon.innerHTML)
+              alert(`Good Job! The word was "${word}". Current Score: ${prizeWon.innerHTML}`)
               newGame()
             }
           }
@@ -219,7 +212,7 @@ for (let i = 0; i < hardBtn.length; i++) {
 wordSubmit.addEventListener('click',function(){
   if (wordInput.value == word){
     prizeWon.innerHTML = ((parseInt(prizeWon.innerText)) + (parseInt(prize.innerText)))
-    alert('Good Job! Current Score: '+prizeWon.innerHTML)
+    alert(`Good Job! The word was "${word}". Current Score: ${prizeWon.innerHTML}`)
     wordInput.value = ''
     newGame()
   } else {
@@ -228,10 +221,11 @@ wordSubmit.addEventListener('click',function(){
       alert('Try again!')
 
       if (chances === 0) {
-          alert('Game Over! Final Score: '+prizeWon.innerHTML+'. Click OK to play again')
+          alert(`Game Over! The word was "${word}". Final Score: ${prizeWon.innerHTML}. Click OK to play again`)
           prizeWon.innerHTML = 0
           chances = 6
           newGame()
       } 
     }
   })
+
