@@ -46,9 +46,10 @@ function dash(word){
   dashedWord = []
   const letters = word.split('')
   console.log(letters)
-  for (let i = 0; i < letters.length; i++) {
-      dashedWord.push("-")
-    }
+  letters.forEach( ()=> { dashedWord.push("-")});
+  // for (let i = 0; i < letters.length; i++) {
+  //     dashedWord.push("-")
+  //   }
   }
 
 function showWord() {
@@ -110,7 +111,7 @@ function playGame() {
         const guess = event.target.innerHTML
         //if guessed letter doesn't match and has not been used before take away a chance and letter to used letters
         if (word.split('').indexOf(guess) < 0 && usedLtrsArray.indexOf(guess) < 0) {
-          chances = (chances-1)
+          chances = chances--
           chancesLeft.innerHTML = chances
           usedLtrsArray.push(guess)
           usedLtrs.innerHTML += guess
