@@ -217,7 +217,7 @@ wordSubmit.addEventListener('click',function(){
     wordInput.value = ''
     newGame()
   } else {
-      chances = (chances-1)
+      chances = chances--
       chancesLeft.innerHTML = chances
       alert('Try again!')
 
